@@ -112,6 +112,7 @@ export function Sidebar({ user }: SidebarProps) {
           <span className="font-medium">Logout Session</span>
         </Button>
       </div>
+    </aside>
   )
 }
 
