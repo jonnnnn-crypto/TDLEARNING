@@ -59,7 +59,7 @@ export default async function CreateCommunityPage() {
         <CardHeader>
           <CardTitle>Create a New Community</CardTitle>
           <CardDescription>
-            Start a new learning group. Once created, you'll be the Community Admin and it will be sent for Verification.
+            Start a new learning group. Once created, you&apos;ll be the Community Admin and it will be sent for Verification.
           </CardDescription>
         </CardHeader>
         <CardContent>

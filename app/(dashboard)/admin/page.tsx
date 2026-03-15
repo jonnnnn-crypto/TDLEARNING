@@ -103,7 +103,7 @@ export default async function AdminDashboardPage() {
                                  <CardTitle>{community.name}</CardTitle>
                                  <Badge variant="outline" className="bg-yellow-500/10 text-yellow-600">Pending</Badge>
                              </div>
-                             <CardDescription>Requested by: {(community.owner_id as any)?.name || 'Unknown User'}</CardDescription>
+                              <CardDescription>Requested by: {(community as unknown as { owner_id: { name: string } }).owner_id?.name || 'Unknown User'}</CardDescription>
                          </CardHeader>
                          <CardContent>
                              <p className="text-sm text-foreground">{community.description}</p>

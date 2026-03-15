@@ -2,21 +2,36 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { createClient } from '@/utils/supabase/client'
-import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Send, PlusCircle, Smile } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+
+interface ChatMessage {
+  id: string
+  created_at: string
+  user_id: string
+  content: string
+  user?: {
+    id: string
+    name: string
+    avatar: string
+  }
+}
+
+interface ChatUser {
+  id: string
+}
 
 export function RoomChat({ 
   initialMessages, 
   channelId, 
   currentUser 
 }: { 
-  initialMessages: any[], 
+  initialMessages: ChatMessage[], 
   channelId: string, 
-  currentUser: any 
+  currentUser: ChatUser 
 }) {
-  const [messages, setMessages] = useState(initialMessages)
+  const [messages, setMessages] = useState<ChatMessage[]>(initialMessages)
   const [newMessage, setNewMessage] = useState('')
   const supabase = createClient()
   const messagesEndRef = useRef<HTMLDivElement>(null)
@@ -49,9 +64,12 @@ export function RoomChat({
             .eq('id', payload.new.user_id)
             .single()
 
-          const newMsg = {
-            ...payload.new,
-            user: userData
+          const newMsg: ChatMessage = {
+            id: payload.new.id,
+            created_at: payload.new.created_at,
+            user_id: payload.new.user_id,
+            content: payload.new.content,
+            user: userData || undefined
           }
           setMessages(prev => [...prev, newMsg])
         }

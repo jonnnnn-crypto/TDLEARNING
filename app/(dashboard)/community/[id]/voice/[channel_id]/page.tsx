@@ -3,7 +3,7 @@ import { notFound, redirect } from 'next/navigation'
 import { Mic } from 'lucide-react'
 
 // Placeholder for the actual WebRTC Voice Component
-import { VoiceRoom } from './voice-room'
+import { VoiceRoom } from '@/app/(dashboard)/community/[id]/voice/[channel_id]/voice-room'
 
 export default async function VoiceChannelPage({
   params
@@ -36,7 +36,7 @@ export default async function VoiceChannelPage({
       </div>
 
       <div className="flex-1 flex flex-col items-center justify-center bg-muted/10 p-4">
-          <VoiceRoom channelId={channel.id} currentUser={{ id: user.id }} />
+          <VoiceRoom currentUser={{ id: user.id }} />
       </div>
     </div>
   )

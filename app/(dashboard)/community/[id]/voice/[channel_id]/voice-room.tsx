@@ -1,28 +1,18 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 import { Button } from '@/components/ui/button'
 import { Mic, MicOff, PhoneOff, Users } from 'lucide-react'
 
-export function VoiceRoom({ channelId, currentUser }: { channelId: string, currentUser: any }) {
+export function VoiceRoom({ currentUser }: { currentUser: { id: string } }) {
   const [isJoined, setIsJoined] = useState(false)
   const [isMuted, setIsMuted] = useState(false)
-  const [participants, setParticipants] = useState<any[]>([])
-
-  useEffect(() => {
-     // Here we would initialize WebRTC and Supabase Broadcast
-     // For this mockup, we'll simulate it.
+  
+  const participants = useMemo(() => {
      if (isJoined) {
-         setParticipants(prev => {
-             if (prev.length === 0) return [{ id: currentUser.id, isMuted }]
-             return prev
-         })
-     } else {
-         setParticipants(prev => {
-             if (prev.length > 0) return []
-             return prev
-         })
+         return [{ id: currentUser.id, isMuted }]
      }
+     return []
   }, [isJoined, currentUser.id, isMuted])
 
   if (!isJoined) {
@@ -56,7 +46,7 @@ export function VoiceRoom({ channelId, currentUser }: { channelId: string, curre
                         <div className={`w-28 h-28 rounded-full bg-primary/20 flex items-center justify-center border-4 ${isMuted ? 'border-transparent' : 'border-green-500 shadow-[0_0_15px_rgba(34,197,94,0.4)]'}`}>
                              <Users className="w-12 h-12 text-primary" />
                         </div>
-                        {p.isMuted && (
+                        {isMuted && (
                             <div className="absolute -bottom-2 -right-2 bg-destructive text-destructive-foreground p-1.5 rounded-full border-[3px] border-background">
                                 <MicOff className="w-4 h-4" />
                             </div>

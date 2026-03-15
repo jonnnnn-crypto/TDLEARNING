@@ -1,10 +1,10 @@
 import { createClient } from '@/utils/supabase/server'
 import { notFound, redirect } from 'next/navigation'
-import { Hash, Phone } from 'lucide-react'
+import { Hash } from 'lucide-react'
 
 // Note: For real-time capability, we need a Client Component for the inner chat mechanics.
 // This is the outer Server Component shell.
-import { RoomChat } from './room-chat'
+import { RoomChat } from '@/app/(dashboard)/community/[id]/chat/[channel_id]/room-chat'
 
 export default async function TextChannelPage({
   params
