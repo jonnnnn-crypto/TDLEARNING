@@ -1,6 +1,8 @@
 import { createAdminClient } from "@/utils/supabase/admin"
 import { redirect } from "next/navigation"
 
+export const dynamic = "force-dynamic"
+
 export default async function ElevatePage() {
   const adminClient = createAdminClient()
   const userId = '43135578-1f1f-4923-85c3-7092e32f7a50'
