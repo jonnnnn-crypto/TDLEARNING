@@ -1,6 +1,8 @@
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 
+export const dynamic = "force-dynamic"
+
 export default async function AdminLayout({
   children,
 }: {
@@ -17,7 +19,7 @@ export default async function AdminLayout({
     .from('users')
     .select('role')
     .eq('id', user.id)
-    .single()
+    .maybeSingle()
 
   if (profile?.role !== 'super_admin') {
     redirect('/dashboard')

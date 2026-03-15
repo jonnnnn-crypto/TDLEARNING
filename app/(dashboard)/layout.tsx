@@ -3,6 +3,8 @@ import { redirect } from 'next/navigation'
 import { Sidebar } from '@/components/sidebar'
 import { RealtimeRoleListener } from '@/components/realtime-role-listener'
 
+export const dynamic = "force-dynamic"
+
 export default async function DashboardLayout({
   children,
 }: {
@@ -22,7 +24,7 @@ export default async function DashboardLayout({
     .from('users')
     .select('*')
     .eq('id', user.id)
-    .single()
+    .maybeSingle()
 
   return (
     <RealtimeRoleListener userId={user.id}>

@@ -14,7 +14,7 @@ export function RealtimeRoleListener({ children, userId }: { children: React.Rea
 
     // Get initial role
     const fetchRole = async () => {
-      const { data } = await supabase.from('users').select('role').eq('id', userId).single()
+      const { data } = await supabase.from('users').select('role').eq('id', userId).maybeSingle()
       if (data) setCurrentRole(data.role)
     }
     fetchRole()
