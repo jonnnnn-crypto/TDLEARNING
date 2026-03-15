@@ -132,7 +132,7 @@ export function Sidebar({ user }: SidebarProps) {
           <Avatar className="h-10 w-10 shrink-0 border border-primary/20 shadow-lg">
             <AvatarImage src={user?.avatar || ""} alt="User Avatar" />
             <AvatarFallback className="bg-primary/10 text-primary font-bold">
-                {user?.name?.[0]?.toUpperCase() || user?.email?.[0].toUpperCase() || "U"}
+                {user?.name?.[0]?.toUpperCase() || user?.email?.[0]?.toUpperCase() || "U"}
             </AvatarFallback>
           </Avatar>
           <div className="flex flex-col truncate min-w-0">
