@@ -167,10 +167,8 @@ export default function AdminUsersPage() {
                     </td>
                     <td className="px-6 py-4 text-right">
                       <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon" className="h-8 w-8 rounded-lg hover:bg-white/10">
-                            <MoreVertical className="h-4 w-4" />
-                          </Button>
+                        <DropdownMenuTrigger className="h-8 w-8 rounded-lg hover:bg-white/10 flex items-center justify-center cursor-pointer transition-colors">
+                          <MoreVertical className="h-4 w-4" />
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end" className="bg-zinc-900 border-white/10 min-w-[160px]">
                           <DropdownMenuItem onClick={() => updateUserRole(user.id, 'super_admin')} className="gap-2 cursor-pointer">
