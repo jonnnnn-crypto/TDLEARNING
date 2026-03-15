@@ -8,7 +8,22 @@ import { Button } from "@/components/ui/button"
 import { createClient } from "@/utils/supabase/client"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
-export function Sidebar({ user }: { user: any }) {
+interface SidebarProps {
+  user: {
+    id: string;
+    email?: string;
+    user_metadata?: {
+      full_name?: string;
+      avatar_url?: string;
+    };
+    avatar?: string; // Standardized custom property
+    role?: string;
+    name?: string;
+  } | null;
+  className?: string;
+}
+
+export function Sidebar({ user }: SidebarProps) {
   const pathname = usePathname()
   const supabase = createClient()
 

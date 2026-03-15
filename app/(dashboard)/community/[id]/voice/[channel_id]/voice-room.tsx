@@ -13,9 +13,15 @@ export function VoiceRoom({ channelId, currentUser }: { channelId: string, curre
      // Here we would initialize WebRTC and Supabase Broadcast
      // For this mockup, we'll simulate it.
      if (isJoined) {
-         setParticipants([{ id: currentUser.id, isMuted }])
+         setParticipants(prev => {
+             if (prev.length === 0) return [{ id: currentUser.id, isMuted }]
+             return prev
+         })
      } else {
-         setParticipants([])
+         setParticipants(prev => {
+             if (prev.length > 0) return []
+             return prev
+         })
      }
   }, [isJoined, currentUser.id, isMuted])
 

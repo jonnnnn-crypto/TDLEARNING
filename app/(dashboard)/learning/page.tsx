@@ -4,12 +4,13 @@ import { Button } from '@/components/ui/button'
 import { BookOpen, Search, Signal } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
 
 export default async function LearningPage() {
   const supabase = await createClient()
 
-  const { data: { user } } = await supabase.auth.getUser()
-
+  const { data: { session } } = await supabase.auth.getSession()
+  if (!session) redirect('/login')
   // Fetch all courses
   // In a real app we might filter by communities the user has joined
   const { data: courses } = await supabase

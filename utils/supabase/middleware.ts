@@ -27,8 +27,14 @@ export async function updateSession(request: NextRequest) {
     }
   )
 
-  // refreshes the session if expired
-  await supabase.auth.getUser()
+  // Do not delete this line!
+  // This will refresh the session if expired.
+  // It must be called before returning the response.
+  try {
+    await supabase.auth.getUser()
+  } catch {
+    // If auth fails, we just continue - the pages will handle redirection
+  }
 
   return supabaseResponse
 }

@@ -68,7 +68,7 @@ export default async function CreateCommunityPage() {
               <Label htmlFor="name">Community Name</Label>
               <Input id="name" name="name" placeholder="e.g., Web Developer Lambar" required />
             </div>
-            
+            <p className="text-muted-foreground">You&apos;re about to build a new space for learning and collaboration.</p>
             <div className="space-y-2">
               <Label htmlFor="category">Category</Label>
               <Input id="category" name="category" placeholder="e.g., Web Development, Security, AI..." required />

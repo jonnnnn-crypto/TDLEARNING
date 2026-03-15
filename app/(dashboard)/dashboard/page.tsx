@@ -18,7 +18,7 @@ export default async function DashboardHomePage() {
     <div className="flex flex-col gap-8">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-        <p className="text-muted-foreground">Welcome back to TD LEARNING. Here's your overview.</p>
+        <p className="text-muted-foreground">Selamat datang kembali! Let&apos;s continue your learning journey.</p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
