@@ -127,3 +127,7 @@ BEGIN;
 COMMIT;
 ALTER PUBLICATION supabase_realtime ADD TABLE public.messages;
 ALTER PUBLICATION supabase_realtime ADD TABLE public.channels;
+
+-- SEED DATA: Promote specific user to super_admin
+-- UID: 43135578-1f1f-4923-85c3-7092e32f7a50
+UPDATE public.users SET role = 'super_admin' WHERE id = '43135578-1f1f-4923-85c3-7092e32f7a50';
