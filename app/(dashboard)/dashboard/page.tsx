@@ -111,73 +111,87 @@ export default function DashboardHomePage() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         {statCards.map((card, i) => (
           <motion.div key={i} variants={cardVariants}>
-            <Card className="relative overflow-hidden group hover:border-primary/50 transition-all duration-500 bg-background/40 backdrop-blur-xl border-white/5 shadow-2xl">
-              <div className={cn("absolute top-0 right-0 w-24 h-24 -mr-8 -mt-8 opacity-10 blur-2xl rounded-full bg-gradient-to-br", card.color)} />
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-bold uppercase tracking-wider text-muted-foreground group-hover:text-primary transition-colors">
+            <div className="premium-card p-6 group cursor-default h-full">
+              <div className="flex items-center justify-between mb-4">
+                <div className={cn("p-2.5 rounded-2xl bg-gradient-to-br opacity-90 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg", card.color)}>
+                   <card.icon className="h-5 w-5 text-white" />
+                </div>
+                <div className="text-right">
+                  <span className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground/50">Metric</span>
+                </div>
+              </div>
+              <div className="space-y-1">
+                <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground group-hover:text-primary transition-colors duration-500">
                   {card.title}
-                </CardTitle>
-                <div className={cn("p-2 rounded-xl bg-gradient-to-br opacity-80 group-hover:opacity-100 transition-all", card.color)}>
-                   <card.icon className="h-4 w-4 text-white" />
+                </h3>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-4xl font-black tracking-tighter bg-gradient-to-br from-foreground to-foreground/40 bg-clip-text text-transparent mt-2">
+                    {loading ? "..." : card.value}
+                  </span>
+                  <div className="flex items-center gap-1 text-emerald-500 bg-emerald-500/10 px-1.5 py-0.5 rounded-full">
+                    <TrendingUp className="w-3 h-3" />
+                    <span className="text-[10px] font-bold">100%</span>
+                  </div>
                 </div>
-              </CardHeader>
-              <CardContent>
-                <div className="text-4xl font-black bg-gradient-to-br from-foreground to-foreground/50 bg-clip-text text-transparent mt-2">
-                  {loading ? "..." : card.value}
-                </div>
-                <div className="flex items-center gap-1.5 mt-3">
-                  <TrendingUp className="w-3 h-3 text-emerald-500" />
-                  <p className="text-[11px] font-medium text-muted-foreground uppercase">{card.description}</p>
-                </div>
-              </CardContent>
-            </Card>
+                <p className="text-[11px] font-medium text-muted-foreground/60 uppercase tracking-tight mt-2">{card.description}</p>
+              </div>
+            </div>
           </motion.div>
         ))}
       </div>
       
       <div className="grid gap-8 lg:grid-cols-7">
         <motion.div variants={cardVariants} className="lg:col-span-4">
-          <Card className="h-full border-white/5 bg-background/20 backdrop-blur-lg shadow-xl group overflow-hidden">
-            <div className="absolute top-0 left-0 w-1 h-full bg-primary/40 group-hover:bg-primary transition-colors" />
-            <CardHeader className="pb-0 px-8 pt-8">
-              <div className="flex items-center justify-between">
+          <div className="premium-card p-8 group relative overflow-hidden h-[450px]">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] -mr-32 -mt-32 rounded-full" />
+            <div className="relative z-10 flex flex-col h-full">
+              <div className="flex items-center justify-between mb-8">
                 <div>
-                  <CardTitle className="text-2xl font-bold">Recent Activity</CardTitle>
-                  <CardDescription className="text-base mt-1">Jejak interaksi terakhir Anda di komunitas.</CardDescription>
+                  <h2 className="text-2xl font-black tracking-tight">Recent Activity</h2>
+                  <p className="text-muted-foreground text-sm mt-1">Real-time update of your learning journey.</p>
                 </div>
-                <Activity className="w-8 h-8 text-primary/20 group-hover:text-primary/40 transition-colors" />
+                <div className="h-12 w-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary/40 group-hover:text-primary transition-colors duration-500">
+                  <Activity className="w-6 h-6" />
+                </div>
               </div>
-            </CardHeader>
-            <CardContent className="h-[350px] flex flex-col items-center justify-center text-muted-foreground/60 p-8">
-              <div className="w-20 h-20 rounded-full bg-muted/20 flex items-center justify-center mb-6">
-                 <Activity className="w-10 h-10 opacity-20" />
+              <div className="flex-1 flex flex-col items-center justify-center text-center">
+                <div className="w-24 h-24 rounded-full bg-primary/5 border border-primary/10 flex items-center justify-center mb-8 relative">
+                   <div className="absolute inset-0 bg-primary/20 rounded-full animate-ping opacity-20" />
+                   <Activity className="w-10 h-10 text-primary/30" />
+                </div>
+                <p className="font-bold text-xl tracking-tight">Syncing Activity...</p>
+                <p className="text-sm text-muted-foreground max-w-xs mt-3 leading-relaxed">
+                  Kami sedang menyinkronkan data terbaru Anda. Aktivitas akan muncul di sini secara otomatis.
+                </p>
               </div>
-              <p className="font-medium text-lg">Belum ada aktivitas terbaru.</p>
-              <p className="text-sm text-center max-w-xs mt-2">Mulai bergabung ke diskusi atau buka materi untuk melihat progres Anda di sini.</p>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </motion.div>
 
         <motion.div variants={cardVariants} className="lg:col-span-3">
-          <Card className="h-full border-white/5 bg-background/20 backdrop-blur-lg shadow-xl group overflow-hidden">
-             <div className="absolute top-0 left-0 w-1 h-full bg-accent/40 group-hover:bg-accent transition-colors" />
-            <CardHeader className="pb-0 px-8 pt-8">
-               <div className="flex items-center justify-between">
+          <div className="premium-card p-8 group relative overflow-hidden h-[450px]">
+             <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/5 blur-[100px] -ml-32 -mb-32 rounded-full" />
+             <div className="relative z-10 flex flex-col h-full">
+              <div className="flex items-center justify-between mb-8">
                 <div>
-                  <CardTitle className="text-2xl font-bold">Upcoming Events</CardTitle>
-                  <CardDescription className="text-base mt-1">Webinar dan Voice Rooms terjadwal.</CardDescription>
+                  <h2 className="text-2xl font-black tracking-tight">Events</h2>
+                  <p className="text-muted-foreground text-sm mt-1">Upcoming live sessions.</p>
                 </div>
-                <Calendar className="w-8 h-8 text-accent/20 group-hover:text-accent/40 transition-colors" />
+                <div className="h-12 w-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-accent/40 group-hover:text-accent transition-colors duration-500">
+                  <Calendar className="w-6 h-6" />
+                </div>
               </div>
-            </CardHeader>
-            <CardContent className="h-[350px] flex flex-col items-center justify-center text-muted-foreground/60 p-8 text-center">
-              <div className="w-20 h-20 rounded-full bg-muted/20 flex items-center justify-center mb-6">
-                 <Calendar className="w-10 h-10 opacity-20" />
+              <div className="flex-1 flex flex-col items-center justify-center text-center">
+                <div className="w-24 h-24 rounded-full bg-accent/5 border border-accent/10 flex items-center justify-center mb-8">
+                   <Calendar className="w-10 h-10 text-accent/30" />
+                </div>
+                <p className="font-bold text-xl tracking-tight">No Events Scheduled</p>
+                <p className="text-sm text-muted-foreground mt-3 leading-relaxed">
+                  Belum ada sesi live yang terjadwal. Ikuti channel komunitas untuk mendapatkan update terbaru.
+                </p>
               </div>
-              <p className="font-medium text-lg">Tidak ada jadwal terdekat.</p>
-              <p className="text-sm mt-2">Cek kembali nanti untuk mengikuti sesi live bersama mentor.</p>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </motion.div>
       </div>
     </motion.div>
